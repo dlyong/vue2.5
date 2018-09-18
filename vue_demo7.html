@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 模板语法</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--差值表达式-->
+        {{name}}
+        <!---v-text-->
+        <div v-text="name"></div>
+        <!---v-html-->
+        <div v-html="name"></div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                name:"<div>Dell</div>"
+
+            }
+        })
+    </script>
+</body>
+</html>

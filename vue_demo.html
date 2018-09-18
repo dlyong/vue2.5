@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 入门</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <!--挂载点、模板、实例之间的关系-->
+    <div id="root">
+        <h1>{{msg}}</h1>
+        <h1>{{number}}</h1>
+        <h1 v-text="number"></h1>
+        <h1 v-html="number"></h1>
+        <div v-text="content"></div>
+        <div v-html="content"></div>
+        <!--绑定事件-->
+        <div v-on:click="handleClick" >{{content1}}</div>
+        <!--v-on 的简写 @-->
+        <div @click="handleClick" >{{content1}}</div>
+
+    </div>
+    <script>
+        new Vue({
+            // 挂载点 是以ID为root的挂在点
+            el:"#root",
+            // 模板
+            template:"",
+            data : {
+                msg:"hello world",
+                number:123,
+                content:"<h1>我被转义了吗？</h1>",
+                content1: "hello"
+            },
+            methods:{
+                handleClick : function () {
+                    this.content1 = "world";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

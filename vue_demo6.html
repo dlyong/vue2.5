@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 实例生命周期函数</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        // 生命周期函数就是vue实例在某个时间点自动执行的函数
+        var vm = new Vue({
+            beforeCreate : function(){
+                console.log("beforeCreate")
+            },
+            created : function() {
+                console.log("created")
+            },
+            el:"#app",
+            template:"<div>{{test}}</div>",
+            beforeMount:function(){
+                console.log(this.$el)
+                console.log("beforeMount")
+            },
+            data:{
+                test:""
+            },
+            mounted : function () {
+                console.log(this.$el)
+                console.log("mounted")
+            },
+            beforeDestroy : function () {
+                console.log("beforeDestroy")
+                console.log(this.$el)
+
+            },
+            destroyed : function () {
+                console.log("destroyed")
+                console.log(this.$el)
+            },
+            beforeUpdate:function () {
+                console.log("beforeUpdate")
+            },
+            updated : function () {
+                console.log("updated")
+            }
+
+        })
+    </script>
+</body>
+</html>

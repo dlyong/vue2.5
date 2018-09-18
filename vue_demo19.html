@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件使用中的细节点</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <table>
+            <tbody>
+               <tr is="row"></tr>
+               <tr is="row"></tr>
+               <tr is="row"></tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // 子组件中data不是一个对象，必须是函数
+        // 跟组件是对象
+        Vue.component("row",{
+            data () {
+              return {
+                  content:"this is content"
+              }
+            },
+            template:"<tr><td>{{content}}</td></tr>"
+        })
+        var vm = new Vue({
+            el:"#root",
+
+
+
+        })
+    </script>
+</body>
+
+</html>

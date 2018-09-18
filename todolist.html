@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <button @click="handleClick">提交</button>
+        </div>
+        <ul>
+          <!--  <li v-for="(item,index) of list" :key="index">
+                {{item}}
+            </li>-->
+           <!--content 传参数-->
+            <todo-item
+                    v-for="(item,index) of list"
+                    :key="index"
+                    :content="item"
+                    :index="index"
+                    @delete="handleDelete"
+            >
+                {{item}}
+            </todo-item>
+        </ul>
+    </div>
+    <script>
+        <!--全局组件-->
+        Vue.component('todo-item',{
+            // 父组件向子组件通过属性方式传值
+           props:['content','index'],
+           template: '<li @click="handleClick">{{content}}</li>',
+           methods: {
+               handleClick :function () {
+                   // 子组件向父组件传递（发布订阅模式）
+                    this.$emit('delete',this.index);
+               }  
+           } 
+        })
+  /*      <!--局部组件-->
+        var TodoItem={
+            template: '<li>item</li>'
+        }*/
+
+       new Vue({
+        el:"#root",
+        //  // 使用局部组件要在实例里面注册
+        // components:{
+        //   'todo-item' :  TodoItem
+        // },
+        data:{
+            inputValue:"",
+            list:[]
+        },
+        methods:{
+            handleClick : function () {
+                if (this.inputValue == ""){
+                    alert("请输入内容")
+                }else{
+                    this.list.push(this.inputValue);
+                    this.inputValue="";
+                }
+            },
+            handleDelete : function (index) {
+                this.list.splice(todolist,1)
+            }
+        }
+       })
+    </script>
+</body>
+</html>

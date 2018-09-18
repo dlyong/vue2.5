@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if,v-show,v-for</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-if="show">hello world</div>
+        <!--<div v-show="show">hello world</div>-->
+        <!--v-if与v-show 页面显示虽然相同，v-show只是添加了css样式删除，v-if是直接在dom树中删除-->
+        <button @click="handleClick">toggle</button>
+        <ul>
+            <li v-for="(item,index) of list" :key="index">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+       new Vue({
+        el:"#root",
+        data:{
+            show : false,
+            list:[1,2,3]
+        },
+        methods : {
+            handleClick : function () {
+                this.show = !this.show ;
+            }
+        }
+       })
+    </script>
+</body>
+</html>

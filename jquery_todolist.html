@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq todolist</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <input id="input" type="text"/>
+        <button id="btn">submit</button>
+        <ul id="list"></ul>
+    </div>
+    <script>
+        function Page() {
+
+        }
+        $.extend(Page.prototype,{
+            init:function () {
+                this.bindEvents()
+            },
+            bindEvents:function () {
+                var btn = $("#btn");
+                btn.on("click",$.proxy(this.handleBtnClick,this))
+            },
+            handleBtnClick : function () {
+                var inputValue = $("#input").val();
+                var ulElem = $("#list");
+                ulElem.append('<li>'+inputValue+'</li>')
+            }
+
+        })
+        var page = new Page();
+        page.init();
+    </script>
+</body>
+</html>
